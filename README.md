@@ -19,6 +19,12 @@ Add start script to launchd
 
 -
 
+Start iproxy
+
+    launchctl start org.usbmuxd.iproxy
+
+-
+
 Add iphone to hosts file
 
     echo '127.0.0.1	localhost iphone' >> /etc/hosts
