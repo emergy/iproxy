@@ -7,6 +7,18 @@ Install USB Multiplex Daemon
 
 -
 
+Download Agent start script
+
+    curl https://raw.github.com/emergy/LaunchAgents/master/org.usbmuxd.iproxy.plist > ~/Library/LaunchAgents/org.usbmuxd.iproxy.plist
+
+-
+
+Add start script to launchd
+
+    launchctl load -w $HOME/Library/LaunchAgents/org.usbmuxd.iproxy.plist
+
+-
+
 Add iphone to hosts file
 
     echo '127.0.0.1	localhost iphone' >> /etc/hosts
