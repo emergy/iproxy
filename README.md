@@ -1,19 +1,37 @@
 OS X iproxy LaunchAgent
 =======================
 
-sudo port install usbmuxd
+Install USB Multiplex Daemon
 
-cat >> ~/.ssh/config << EOF
-Host iphone
-    UserKnownHostsFile /dev/null
-    StrictHostKeyChecking no
-    Port 5000
-    User root
-EOF
+    sudo port install usbmuxd
+
+-
+
+Add iphone to hosts file
+
+    echo '127.0.0.1	localhost iphone' >> /etc/hosts
+
+-
+
+Add iphone to ssh_config
+
+    cat >> ~/.ssh/config << EOF
+    Host iphone
+        UserKnownHostsFile /dev/null
+        StrictHostKeyChecking no
+        Port 5000
+        User root
+    EOF
+
+-
     
-echo '127.0.0.1	localhost iphone' >> /etc/hosts
+Generate ssh key
 
-ssh-keygen
+    ssh-keygen
 
-ssh iphone 'umask 077; test -d .ssh || mkdir .ssh ; cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub
-ssh mobile@iphone 'umask 077; test -d .ssh || mkdir .ssh ; cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub
+-
+
+Add ssh key to iPhone
+
+    ssh iphone 'umask 077; test -d .ssh || mkdir .ssh ; cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub
+    ssh mobile@iphone 'umask 077; test -d .ssh || mkdir .ssh ; cat >> .ssh/authorized_keys' < ~/.ssh/id_rsa.pub
